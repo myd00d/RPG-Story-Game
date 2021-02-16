@@ -1,6 +1,6 @@
 var hero, heroImage, stick, stickImage, armor1, armor1Image, armor2, armor2Image, armor3, armor3Image, armor4, armor4Image, armor5, armor5Image, armor6, armor6Image, armor7, armor7Image, armor8, armor8Image, armor9, armor9Image, armor10, armor10Image;
 var woodenSword, woodenSwordImage, stoneSword, stoneSwordImage, basicSword1, basicSword1Image, basicSword2, basicSword2Image, basicSword3, basicSword3Image, basicSword4, basicSword4Image, uncommonSword1, uncommonSword1Image, uncommonSword2, uncommonSword2Image, uncommonSword3, uncommonSword3Image, uncommonSword4, uncommonSword4Image;
-var mythicalSword, mythicalSwordImage;
+var mythicalSword, mythicalSwordImage, swordStopImage;
 
 function preload() {
   mythicalSwordImage = loadImage("shopImages/WhiteHatJr Game Mythical Sword.png");
@@ -22,7 +22,7 @@ function preload() {
   basicSword4Image = loadImage("shopImages/WhiteHatJr Game Basic Sword 4.png");
   woodenSwordImage = loadImage("shopImages/WhiteHatJr Game Wooden Sword.png");
   stoneSwordImage = loadImage("shopImages/WhiteHatJr Game Smooth Stone Sword.png");
-  stoneSwordImage = loadImage("shopImages/WhiteHatJr Game Smooth Stone Sword.png");
+  swordStopImage = loadImage("shopImages/WhiteHatJr Game Background Shop.png");
 }
 
 function setup() {
@@ -73,19 +73,69 @@ function setup() {
   mythicalSword.depth = hero.depth + 1;
   armor10.scale = 0.333;
   armor10.depth = hero.depth + 2;
+  stick.visible = false;
+  stick.scale = 0.333;
+  stick.depth = hero.depth + 1;
+  
 }
 
 function draw() {
-  background(255,255,255);  
-  drawSprites();
-  hero.x = mouseX;
-  hero.y = mouseY;
-  mythicalSword.x = hero.x + 90;
-  mythicalSword.y = hero.y - 40;
-  mythicalSword.pointTo(hero.x + 175, hero.y + 25);
+  background(swordStopImage);
+  
+  
+  if(mythicalSword.visible === true) {
+    mythicalSword.x = hero.x + 90;
+    mythicalSword.y = hero.y - 40;
+    mythicalSword.pointTo(hero.x + 175, hero.y + 25);
+  }
+  if(stick.visible === true) {
+    stick.x = hero.x + 70;
+    stick.y = hero.y - 30;
+    stick.pointTo(hero.x + 175, hero.y + 25);
+  }
+  if(keyWentDown("SPACE")) {
+    if(mythicalSword.visible === true) {
+      mythicalSword.visible = false;
+      stick.visible = true;
+    }else if(mythicalSword.visible === false) {
+      mythicalSword.visible = true;
+      stick.visible = false;
+    }else if(stick.visible === true) {
+      stick.visible = false;
+      mythicalSword.visible = true;
+    }else if(stick.visible === false) {
+      stick.visible = true;
+      mythicalSword.visible = false;
+    }    
+
+  }
+  if(keyDown("S")) {
+    hero.y = hero.y + 2.5;
+  }
+  if(keyDown("A")) {
+    hero.x = hero.x - 2.5;
+  }
+  if(keyDown("W")) {
+    hero.y = hero.y - 2.5;
+  }
+  if(keyDown("D")) {
+    hero.x = hero.x + 2.5;
+  }
+  if(keyDown(UP_ARROW)) {
+    hero.y = hero.y - 2.5;
+  }
+  if(keyDown(LEFT_ARROW)) {
+    hero.x = hero.x - 2.5;
+  }
+  if(keyDown(DOWN_ARROW)) {
+    hero.y = hero.y + 2.5;
+  }
+  if(keyDown(RIGHT_ARROW)) {
+    hero.x = hero.x + 2.5;
+  }
   armor10.x = hero.x;
   armor10.y = hero.y;
-  
+  drawSprites();
 }
 
 //You are a couple's firstborn child in the 1980's and they believe you have the potential to save the world from the invading monsters.
