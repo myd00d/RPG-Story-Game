@@ -1,6 +1,15 @@
 var hero, heroImage, stick, stickImage, armor1, armor1Image, armor2, armor2Image, armor3, armor3Image, armor4, armor4Image, armor5, armor5Image, armor6, armor6Image, armor7, armor7Image, armor8, armor8Image, armor9, armor9Image, armor10, armor10Image;
 var woodenSword, woodenSwordImage, stoneSword, stoneSwordImage, basicSword1, basicSword1Image, basicSword2, basicSword2Image, basicSword3, basicSword3Image, basicSword4, basicSword4Image, uncommonSword1, uncommonSword1Image, uncommonSword2, uncommonSword2Image, uncommonSword3, uncommonSword3Image, uncommonSword4, uncommonSword4Image;
 var mythicalSword, mythicalSwordImage, swordStopImage;
+var bought1, bought2, bought3, bought4, bought5, bought6, bought7, bought8, bought9, bought10, bought11, bought12, bought13, bought14, bought15, bought16, bought17, bought18, bought19, bought20, bought21, bought22, bought23; 
+
+var playerHealth, playerMaxHealth, playerDamage, playerAttackSpeed; 
+
+playerMaxHealth = 250; 
+playerHealth = playerMaxHealth; 
+playerDamage = 25; 
+playerAttackSpeed = 0.333;
+
 
 function preload() {
   mythicalSwordImage = loadImage("shopImages/WhiteHatJr Game Mythical Sword.png");
@@ -30,41 +39,41 @@ function setup() {
   
   mythicalSword = createSprite(100, 100, 50, 50);
   mythicalSword.addImage(mythicalSwordImage);
-  hero = createSprite(100, 100, 50, 50);
+  hero = createSprite(750, 300, 50, 50);
   hero.addImage(heroImage);
-  stick = createSprite(50, 50, 50, 50);
+  stick = createSprite(50, 625, 50, 50);
   stick.addImage(stickImage);
-  armor1 = createSprite(50, 50, 50, 50);
+  armor1 = createSprite(125, 625, 50, 50);
   armor1.addImage(armor1Image);
-  armor2 = createSprite(50, 50, 50, 50);
+  armor2 = createSprite(250, 625, 50, 50);
   armor2.addImage(armor2Image);
-  armor3 = createSprite(50, 50, 50, 50);
+  armor3 = createSprite(375, 625, 50, 50);
   armor3.addImage(armor3Image);
-  armor4 = createSprite(50, 50, 50, 50);
+  armor4 = createSprite(500, 625, 50, 50);
   armor4.addImage(armor4Image);
-  armor5 = createSprite(50, 50, 50, 50);
+  armor5 = createSprite(625, 625, 50, 50);
   armor5.addImage(armor5Image);
-  armor6 = createSprite(50, 50, 50, 50);
+  armor6 = createSprite(750, 625, 50, 50);
   armor6.addImage(armor6Image);
-  armor7 = createSprite(50, 50, 50, 50);
+  armor7 = createSprite(875, 625, 50, 50);
   armor7.addImage(armor7Image);
-  armor8 = createSprite(50, 50, 50, 50);
+  armor8 = createSprite(1000, 625, 50, 50);
   armor8.addImage(armor8Image);
-  armor9 = createSprite(100, 200, 50, 50);
+  armor9 = createSprite(1125, 625, 50, 50);
   armor9.addImage(armor9Image);
   armor10 = createSprite(75, 75, 50, 50);
   armor10.addImage(armor10Image);
-  basicSword1 = createSprite(50, 50, 50, 50);
+  basicSword1 = createSprite(150, 125, 50, 50);
   basicSword1.addImage(basicSword1Image);
-  basicSword2 = createSprite(50, 50, 50, 50);
+  basicSword2 = createSprite(260, 125, 50, 50);
   basicSword2.addImage(basicSword2Image);
-  basicSword3 = createSprite(50, 50, 50, 50);
+  basicSword3 = createSprite(350, 125, 50, 50);
   basicSword3.addImage(basicSword3Image);
-  basicSword4 = createSprite(50, 50, 50, 50);
+  basicSword4 = createSprite(410, 125, 50, 50);
   basicSword4.addImage(basicSword4Image);
-  woodenSword = createSprite(100, 200, 50, 50);
+  woodenSword = createSprite(610, 125, 50, 50);
   woodenSword.addImage(woodenSwordImage);
-  stoneSword = createSprite(75, 75, 50, 50);
+  stoneSword = createSprite(510, 125, 50, 50);
   stoneSword.addImage(stoneSwordImage);
 
   hero.depth = stoneSword.depth + 2;
@@ -76,12 +85,48 @@ function setup() {
   stick.visible = false;
   stick.scale = 0.333;
   stick.depth = hero.depth + 1;
-  
+  armor1.scale = 0.333;
+  armor2.scale = 0.333;
+  armor3.scale = 0.333;
+  armor4.scale = 0.333;
+  armor5.scale = 0.333;
+  armor6.scale = 0.333;
+  armor7.scale = 0.333;
+  armor8.scale = 0.333;
+  armor9.scale = 0.333;
+  armor10.scale = 0.333;
+  basicSword1.scale = 0.333;
+  basicSword2.scale = 0.333;
+  basicSword3.scale = 0.333;
+  basicSword4.scale = 0.333;
+  woodenSword.scale = 0.333;
+  stoneSword.scale = 0.333;
 }
 
 function draw() {
   background(swordStopImage);
+
+  fill("green");
+  text(playerHealth, 550, 330);
+
   
+
+  //timedLoop(((1/playerAttackSpeed)*1000), function() {
+    //playerHealth = playerHealth - playerDamage;
+  //});
+
+
+
+  
+  console.log(mouseX, mouseY);
+  
+  if(hero.x > 0 && hero.x < 175) {
+
+    hero.x = 750;
+    hero.y = 300;
+
+
+  }
   
   if(mythicalSword.visible === true) {
     mythicalSword.x = hero.x + 90;
