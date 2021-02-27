@@ -3,13 +3,14 @@ var woodenSword, woodenSwordImage, stoneSword, stoneSwordImage, basicSword1, bas
 var mythicalSword, mythicalSwordImage, swordStopImage;
 var bought1, bought2, bought3, bought4, bought5, bought6, bought7, bought8, bought9, bought10, bought11, bought12, bought13, bought14, bought15, bought16, bought17, bought18, bought19, bought20, bought21, bought22, bought23; 
 
-var playerHealth, playerMaxHealth, playerDamage, playerAttackSpeed; 
+var playerHealth, playerMaxHealth, playerDamage, playerAttackSpeed, slimeDoob, dragonMan, slimeDoobImage, dragonManImage; 
 
 playerMaxHealth = 250; 
 playerHealth = playerMaxHealth; 
 playerDamage = 25; 
 playerAttackSpeed = 0.333;
 
+var timedLooper;
 
 function preload() {
   mythicalSwordImage = loadImage("shopImages/WhiteHatJr Game Mythical Sword.png");
@@ -32,6 +33,8 @@ function preload() {
   woodenSwordImage = loadImage("shopImages/WhiteHatJr Game Wooden Sword.png");
   stoneSwordImage = loadImage("shopImages/WhiteHatJr Game Smooth Stone Sword.png");
   swordStopImage = loadImage("shopImages/WhiteHatJr Game Background Shop.png");
+  dragonManImage = loadImage("shopImages/WhiteHatJr Game Dragon Monster.png");
+  slimeDoobImage = loadImage("shopImages/WhiteHatJr Game Slime Monster.png");
 }
 
 function setup() {
@@ -101,20 +104,42 @@ function setup() {
   basicSword4.scale = 0.333;
   woodenSword.scale = 0.333;
   stoneSword.scale = 0.333;
+  timedLooper = createSprite(300, 300, 15, 35);
+  timedLooper.scale = 3.75;
+  timedLooper.shapeColor = "pink";
+
+  slimeDoob = createSprite(1000, 50, 50, 50);
+  slimeDoob.debug = true;
+  slimeDoob.addImage(slimeDoobImage);
+  slimeDoob.scale = 0.25;
 }
 
 function draw() {
   background(swordStopImage);
 
-  fill("green");
-  text(playerHealth, 550, 330);
-
   
+  if(mythicalSword.isTouching(slimeDoob)) {
+    hero.x = 750;
+    hero.y = 500;
+  }
 
-  //timedLoop(((1/playerAttackSpeed)*1000), function() {
-    //playerHealth = playerHealth - playerDamage;
-  //});
+  if(playerHealth !== 0) {
+    timedLooper.rotation = timedLooper.rotation + 1;
+    if(timedLooper.rotation > 50) {
+      playerHealth = playerHealth - playerDamage;
+      timedLooper.rotation = 0;
+    }
+    fill("green");
+    textSize(100);
+    text(playerHealth, 550, 330);
+  }
+  if(playerHealth === 0) {
+    fill("red");
+    textSize(25);
+    text("ur health is nothingness hahaha", 550, 330); 
 
+  }
+  
 
 
   
